@@ -1,0 +1,11 @@
+C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\bin\Release\ModelLibrary.dll
+C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\bin\Release\ModelLibrary.pdb
+C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\bin\Release\DataAccess.dll
+C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\bin\Release\Dapper.dll
+C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\bin\Release\DataAccess.pdb
+C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\bin\Release\Dapper.xml
+C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\obj\Release\ModelLibrary.csprojAssemblyReference.cache
+C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\obj\Release\ModelLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\obj\Release\ModelLibrary.csproj.CopyComplete
+C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\obj\Release\ModelLibrary.dll
+C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\obj\Release\ModelLibrary.pdb
