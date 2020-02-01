@@ -39,6 +39,6 @@ namespace ProyectPRS.Controllers
             if (input != null)
                 return Newtonsoft.Json.JsonConvert.SerializeObject(input);
             else return null;
-        }
+        }       
     }
 }

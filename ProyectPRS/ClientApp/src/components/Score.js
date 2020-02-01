@@ -5,17 +5,17 @@ export class Score extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { games: [], loading: true };
-
+        this.state = { players: [], loading: true };
+        debugger;
         fetch('/api/Players/GetPlayers')
             .then(response => response.json())
             .then(data => {
-                this.setState({ games: data[0].json, loading: false });
+                this.setState({ players: data[0].json, loading: false });
             });
     }
 
-    rendergamesTable(games) {
-        let listGames = JSON.parse(games);
+    rendergamesTable(players) {
+        let listPlayers = JSON.parse(players);
         return (
             <table className='table'>
                 <thead>
@@ -27,11 +27,11 @@ export class Score extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {listGames.map(game =>
-                        <tr key={game.Player.Name}>
-                            <td>{game.Won}</td>
-                            <td>{game.Lost}</td>
-                            <td><a href={"/Details?i=" + game.Player.Id}>Details</a></td>
+                    {listPlayers.map(player =>
+                        <tr key={player.Id}>
+                            <td>{player.Name}</td>
+                            <td>{player.WonGames}</td>
+                            <td>{player.LostGames}</td>                           
                         </tr>
                     )}
                 </tbody>
@@ -42,7 +42,7 @@ export class Score extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : this.rendergamesTable(this.state.moves);
+            : this.rendergamesTable(this.state.players);
 
         return (
             <div>

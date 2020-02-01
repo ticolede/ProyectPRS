@@ -20,7 +20,7 @@ namespace ModelLibrary
         {            
             Dictionary<string, dynamic> parameters = new Dictionary<string, dynamic>();
             parameters.Add(nameof(IdPlayer), IdPlayer);
-            return PlayerDA.GetDetailScore<GetDetailScoreModel>(parameters);
+            return PlayerDA.GetDetailScore<GetDetailScoreModel>(parameters)[0];
         }
     }
 }

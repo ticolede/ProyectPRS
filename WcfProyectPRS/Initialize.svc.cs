@@ -60,5 +60,17 @@ namespace WcfProyectPRS
             ServiceExe service = new ServiceExe(new Player());
             return service.Get();
         }
+
+        public ResponseJson Logs(string service,string input,string output)
+        {
+            Log.Logs(service, input, output);
+            return new ResponseJson { Code = 0, Message = "OK" };
+        }
+
+        public ResponseJson LogError(string exception)
+        {
+            Log.LogError(exception);
+            return new ResponseJson { Code = 0, Message = "OK" };
+        }
     }
 }

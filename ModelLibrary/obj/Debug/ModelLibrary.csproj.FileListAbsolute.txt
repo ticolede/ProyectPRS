@@ -9,3 +9,14 @@ C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\obj\Debug\ModelLibrary.cspr
 C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\obj\Debug\ModelLibrary.csproj.CopyComplete
 C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\obj\Debug\ModelLibrary.dll
 C:\Users\Fabian\source\repos\ProyectPRS\ModelLibrary\obj\Debug\ModelLibrary.pdb
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\ModelLibrary\bin\Debug\ModelLibrary.dll
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\ModelLibrary\bin\Debug\ModelLibrary.pdb
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\ModelLibrary\bin\Debug\DataAccess.dll
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\ModelLibrary\bin\Debug\Dapper.dll
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\ModelLibrary\bin\Debug\DataAccess.pdb
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\ModelLibrary\bin\Debug\Dapper.xml
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\ModelLibrary\obj\Debug\ModelLibrary.csprojAssemblyReference.cache
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\ModelLibrary\obj\Debug\ModelLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\ModelLibrary\obj\Debug\ModelLibrary.csproj.CopyComplete
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\ModelLibrary\obj\Debug\ModelLibrary.dll
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\ModelLibrary\obj\Debug\ModelLibrary.pdb

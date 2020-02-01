@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Connector.cs" />
     <Compile Include="GameDA.cs" />
+    <Compile Include="LogDA.cs" />
     <Compile Include="MoveDA.cs" />
     <Compile Include="PlayerDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

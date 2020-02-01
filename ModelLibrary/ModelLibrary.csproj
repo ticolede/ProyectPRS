@@ -46,6 +46,7 @@
     <Compile Include="GetGameMovesModel.cs" />
     <Compile Include="GetPlayersModel.cs" />
     <Compile Include="GetMovesModel.cs" />
+    <Compile Include="LogModel.cs" />
     <Compile Include="NewGameModel.cs" />
     <Compile Include="NewMoveModel.cs" />
     <Compile Include="NewPlayerModel.cs" />

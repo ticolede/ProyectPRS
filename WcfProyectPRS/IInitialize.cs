@@ -36,5 +36,11 @@ namespace WcfProyectPRS
         [OperationContract]
         ResponseJson GetPlayersGame();
 
+        [OperationContract]
+        ResponseJson Logs(string service, string input, string output);
+
+        [OperationContract]
+        ResponseJson LogError(string exception);
+
     }
 }

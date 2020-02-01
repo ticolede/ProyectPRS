@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLibrary", "ModelLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfProyectPRS", "WcfProyectPRS\WcfProyectPRS.csproj", "{49A2C548-9009-40EA-B264-5760C4E6FF20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProyect", "TestProyect\TestProyect.csproj", "{319AC5ED-007D-4E4D-B9E3-D35A8AAA9C73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{49A2C548-9009-40EA-B264-5760C4E6FF20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49A2C548-9009-40EA-B264-5760C4E6FF20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49A2C548-9009-40EA-B264-5760C4E6FF20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{319AC5ED-007D-4E4D-B9E3-D35A8AAA9C73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{319AC5ED-007D-4E4D-B9E3-D35A8AAA9C73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{319AC5ED-007D-4E4D-B9E3-D35A8AAA9C73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{319AC5ED-007D-4E4D-B9E3-D35A8AAA9C73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

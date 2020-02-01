@@ -7,7 +7,7 @@ export class Home extends Component {
         super(props);
 
         // eslint-disable-next-line
-        this.state = { movesSelect: [], roundNumber:1, roundMoves: [] };
+        this.state = { movesSelect: [], roundNumber: 1, roundMoves: [] };
 
         this.getMoves();
         this.onSubmit = this.onSubmit.bind(this);
@@ -19,7 +19,7 @@ export class Home extends Component {
         fetch('/api/Move/GetMoves')
             .then(response => response.json())
             .then(data => {
-                debugger;
+
                 let parseJson = JSON.parse(data[0].json);
                 this.setState({ movesSelect: parseJson });
             });
@@ -42,7 +42,7 @@ export class Home extends Component {
     finishRound(e) {
         debugger;
         let idMove = this.SecondMove.value;
-
+        debugger;
         let index = this.firstMove.selectedIndex;
         let move = this.firstMove[index].text;
         let indextwo = this.SecondMove.selectedIndex;
@@ -51,41 +51,44 @@ export class Home extends Component {
         fetch(`/api/Move/NewMove?idGame=${this.state.game.IdGame}&idMove=${idMove}&idPlayer=${this.state.game.PlayerTwo}&idRound=${this.state.game.IdRound}`)
             .then(response => response.json())
             .then(data => {
-                debugger;
+
                 let parseJson = JSON.parse(data[0].json);
                 this.setState({ secondMove: parseJson });
                 let winner = "";
-                
+
                 fetch(`/api/Game/CheckRound?idGame=${this.state.game.IdGame}&idRound=${this.state.game.IdRound}`)
                     .then(response => response.json())
                     .then(data => {
-                        debugger;
+
                         let parseJson = JSON.parse(data[0].json);
                         this.setState({ finishedRound: parseJson });
                         this.divSecondMove.style.display = "none";
 
-                        let moves = { IdRound: this.state.IdRound, PlayerOne: this.state.p1, PlayerOneMove: move, PlayerTwo: this.state.p2, PlayerTwoMove: movetwo, Winner: this.state.finishedRound };
+                        if (parseJson.Winner === this.state.game.PlayerOne)
+                            winner = this.state.p1;
+                        else if (parseJson.Winner === -1)
+                            winner = "DRAW";
+                        else
+                            winner = this.state.p2;
+
+                        let moves = { IdRound: this.state.roundNumber, PlayerOne: this.state.p1, PlayerOneMove: move, PlayerTwo: this.state.p2, PlayerTwoMove: movetwo, Winner: winner };
                         this.state.roundMoves.push(moves);
 
                         if (parseJson.GameOver === 1) {
-                            this.tableRound.style.display ="none";
-                            this.setState({ roundNumber: 1 });
-                            if (parseJson.Winner === this.state.game.PlayerOne)
-                                winner = this.state.p1;
-                            else
-                                winner = this.state.p2;
-
+                            this.tableRound.style.display = "none";
+                            this.setState({ roundNumber: 1, roundMoves: [] });
                             let action = window.confirm(`The winner is ${winner}!, Do you want to play again ?`)
                             if (action)
-                                this.divFirstMove.style.display = "initial";
-                            else
                                 window.location.href = "/";
+                            else
+                                window.location.href = "https://www.google.com.uy";
 
                         }
                         else {
-                            this.setState({ roundNumber: parseJson.NextRound });;                         
+                            this.state.game.IdRound = parseJson.NextRound;
+                            this.setState({ roundNumber: parseJson.NextRoundNumber });;
                             this.divFirstMove.style.display = "initial";
-                            this.tableRound.style.display ="initial";
+                            this.tableRound.style.display = "initial";
                         }
                     });
 
@@ -94,13 +97,14 @@ export class Home extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        debugger;
+
         var playerOne = this.playerOne.value;
         var playerTwo = this.playerTwo.value;
 
         fetch(`/api/Game/StartGame?playerOne=${playerOne}&playerTwo=${playerTwo}`)
             .then(response => response.json())
             .then(data => {
+                debugger;
                 let parseJson = JSON.parse(data[0].json);
                 this.setState({ game: parseJson, loading: false, p1: playerOne, p2: playerTwo });
                 this.divHome.style.display = "none";
@@ -111,7 +115,7 @@ export class Home extends Component {
     renderSelectFirstMove(moves) {
         return (
             <select name="firstMove" ref={(c) => this.firstMove = c}>
-                debugger;
+
                 {moves.map(move =>
                     <option value={move.Id}>{move.Description}</option>
                 )}
@@ -147,12 +151,12 @@ export class Home extends Component {
                 <tbody>
                     {roundMoves.map(moves =>
                         <tr key={moves.IdRound}>
-                            <td>moves.IdRound</td>
-                            <td>moves.PlayerOne</td>
-                            <td>moves.PlayerOneMove</td>
-                            <td>moves.PlayerTwo</td>
-                            <td>moves.PlayerTwoMove</td>
-                            <td>moves.Winner</td>
+                            <td>{moves.IdRound}</td>
+                            <td>{moves.PlayerOne}</td>
+                            <td>{moves.PlayerOneMove}</td>
+                            <td>{moves.PlayerTwo}</td>
+                            <td>{moves.PlayerTwoMove}</td>
+                            <td>{moves.Winner}</td>
                         </tr>
                     )}
                 </tbody>
@@ -163,7 +167,7 @@ export class Home extends Component {
     renderSelectSecondMove(moves) {
         return (
             <select name="SecondMove" ref={(c) => this.SecondMove = c}>
-                debugger;
+
                 {moves.map(move =>
                     <option key={move.Id} value={move.Id}>{move.Description}</option>
                 )}
@@ -171,7 +175,7 @@ export class Home extends Component {
         );
     }
 
-    render() {       
+    render() {
         let selectFirst = this.renderSelectFirstMove(this.state.movesSelect);
         let selectSecond = this.renderSelectSecondMove(this.state.movesSelect);
         let renderTableRounds = this.renderTableRound(this.state.roundMoves);

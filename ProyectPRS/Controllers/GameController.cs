@@ -41,10 +41,10 @@ namespace ProyectPRS.Controllers
         public IEnumerable<ResponseJson> GetDetailsScore(int idPlayer)
         {
             ResponseJson response = null;
+            InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
             try
-            {
-                InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
-                var task = client.GetGameDetailScoreAsync(idPlayer);
+            {                                
+                var task = client.GetGameDetailScoreAsync(idPlayer);                
                 task.Wait();
                 if (task.IsCompletedSuccessfully)
                     response = task.Result;
@@ -52,7 +52,7 @@ namespace ProyectPRS.Controllers
                     response = new ResponseJson { Code = -1, Message = "Cannot get game´s detail" };
             }
             catch (Exception e)
-            {
+            {                
                 response = new ResponseJson { Code = -10, Message = "An error has ocurred, please try it later" };
             }
             return ToEnumerable<ResponseJson>(response);
@@ -93,7 +93,7 @@ namespace ProyectPRS.Controllers
                 responsePlayerOne = InsertPlayer(playerOne);
                 if (responsePlayerOne.Code == 0)
                 {
-                    responsePlayerTwo = InsertPlayer(playerOne, responsePlayerOne.IdGame);
+                    responsePlayerTwo = InsertPlayer(playerTwo, responsePlayerOne.IdGame);
                     responseJson = new ResponseJson { Code = responsePlayerTwo.Code, Message = responsePlayerTwo.Message };
                 }
                 response = new GameControllerResponse { IdGame = responsePlayerOne.IdGame, PlayerOne = responsePlayerOne.IdPlayer, PlayerTwo = responsePlayerTwo.IdPlayer, IdRound = responsePlayerOne.IdRound };
