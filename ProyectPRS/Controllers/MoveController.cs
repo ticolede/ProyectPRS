@@ -18,9 +18,9 @@ namespace ProyectPRS.Controllers
         public IEnumerable<ResponseJson> GetMoves()
         {
             ResponseJson response = null;
+            InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
             try
             {
-                InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
                 var task = client.GetMovesAsync();
                 task.Wait();
                 if (task.IsCompletedSuccessfully)
@@ -30,7 +30,12 @@ namespace ProyectPRS.Controllers
             }
             catch (Exception e)
             {
+                client.LogErrorAsync(e.StackTrace);
                 response = new ResponseJson { Code = -10, Message = "An error has ocurred, please try it later" };
+            }
+            finally
+            {
+                client.LogsAsync("GetMoves", "", ParseObjectToJson(response));
             }
             return ToEnumerable<ResponseJson>(response);
         }
@@ -40,9 +45,9 @@ namespace ProyectPRS.Controllers
         public IEnumerable<ResponseJson> NewMove(int idGame, int idMove, int idPlayer, int idRound)
         {
             ResponseJson response = null;
+            InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
             try
             {
-                InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
                 var task = client.NewMoveAsync(idGame, idMove, idPlayer, idRound);
                 task.Wait();
                 if (task.IsCompletedSuccessfully)
@@ -52,7 +57,12 @@ namespace ProyectPRS.Controllers
             }
             catch (Exception e)
             {
+                client.LogErrorAsync(e.StackTrace);
                 response = new ResponseJson { Code = -10, Message = "An error has ocurred, please try it later" };
+            }
+            finally
+            {
+                client.LogsAsync("NewMove", "{'idGame':'" + idGame + "','idMove':'" + idMove + "','idPlayer':'" + idPlayer + "','idRound','" + idRound + "'}", ParseObjectToJson(response));
             }
             return ToEnumerable<ResponseJson>(response);
         }

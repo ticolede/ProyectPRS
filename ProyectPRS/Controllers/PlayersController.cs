@@ -17,9 +17,9 @@ namespace ProyectPRS.Controllers
         public IEnumerable<ResponseJson> GetPlayers()
         {
             ResponseJson response = null;
+            InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
             try
-            {
-                InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
+            {                
                 var task = client.GetPlayersGameAsync();
                 task.Wait();
                 if (task.IsCompletedSuccessfully)
@@ -29,7 +29,12 @@ namespace ProyectPRS.Controllers
             }
             catch (Exception e)
             {
+                client.LogErrorAsync(e.StackTrace);
                 response = new ResponseJson { Code = -10, Message = "An error has ocurred, please try it later" };
+            }
+            finally
+            {
+                client.LogsAsync("GetPlayers", "", ParseObjectToJson(response));
             }
             return ToEnumerable<ResponseJson>(response);
         }

@@ -100,6 +100,12 @@ namespace WcfProyectPRS
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInitialize/GetPlayersGame", ReplyAction="http://tempuri.org/IInitialize/GetPlayersGameResponse")]
         System.Threading.Tasks.Task<WcfProyectPRS.ResponseJson> GetPlayersGameAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInitialize/Logs", ReplyAction="http://tempuri.org/IInitialize/LogsResponse")]
+        System.Threading.Tasks.Task<WcfProyectPRS.ResponseJson> LogsAsync(string service, string input, string output);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInitialize/LogError", ReplyAction="http://tempuri.org/IInitialize/LogErrorResponse")]
+        System.Threading.Tasks.Task<WcfProyectPRS.ResponseJson> LogErrorAsync(string exception);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("dotnet-svcutil", "1.0.0.1")]
@@ -185,6 +191,16 @@ namespace WcfProyectPRS
             return base.Channel.GetPlayersGameAsync();
         }
         
+        public System.Threading.Tasks.Task<WcfProyectPRS.ResponseJson> LogsAsync(string service, string input, string output)
+        {
+            return base.Channel.LogsAsync(service, input, output);
+        }
+        
+        public System.Threading.Tasks.Task<WcfProyectPRS.ResponseJson> LogErrorAsync(string exception)
+        {
+            return base.Channel.LogErrorAsync(exception);
+        }
+        
         public virtual System.Threading.Tasks.Task OpenAsync()
         {
             return System.Threading.Tasks.Task.Factory.FromAsync(((System.ServiceModel.ICommunicationObject)(this)).BeginOpen(null, null), new System.Action<System.IAsyncResult>(((System.ServiceModel.ICommunicationObject)(this)).EndOpen));
@@ -223,11 +239,11 @@ namespace WcfProyectPRS
         {
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpBinding_IInitialize))
             {
-                return new System.ServiceModel.EndpointAddress("http://localhost/WcfProyectoPRS/Initialize.svc");
+                return new System.ServiceModel.EndpointAddress("http://localhost/WcfProyectPRS/Initialize.svc");
             }
             if ((endpointConfiguration == EndpointConfiguration.BasicHttpsBinding_IInitialize))
             {
-                return new System.ServiceModel.EndpointAddress("https://desktop-46vv2t7/WcfProyectoPRS/Initialize.svc");
+                return new System.ServiceModel.EndpointAddress("https://desktop-46vv2t7/WcfProyectPRS/Initialize.svc");
             }
             throw new System.InvalidOperationException(string.Format("No se pudo encontrar un punto de conexión con el nombre \"{0}\".", endpointConfiguration));
         }

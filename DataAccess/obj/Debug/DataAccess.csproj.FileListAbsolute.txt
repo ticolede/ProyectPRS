@@ -14,3 +14,4 @@ C:\Users\Fabian\Documents\GitHub\ProyectPRS\DataAccess\obj\Debug\DataAccess.cspr
 C:\Users\Fabian\Documents\GitHub\ProyectPRS\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
 C:\Users\Fabian\Documents\GitHub\ProyectPRS\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\Fabian\Documents\GitHub\ProyectPRS\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\DataAccess\obj\Debug\DataAccess.csprojAssemblyReference.cache

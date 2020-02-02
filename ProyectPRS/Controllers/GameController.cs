@@ -19,9 +19,9 @@ namespace ProyectPRS.Controllers
         public IEnumerable<ResponseJson> GetGameMoves(int idGame)
         {
             ResponseJson response = null;
+            InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
             try
             {
-                InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
                 var task = client.GetGamePlayersMoveAsync(idGame);
                 task.Wait();
                 if (task.IsCompletedSuccessfully)
@@ -31,7 +31,12 @@ namespace ProyectPRS.Controllers
             }
             catch (Exception e)
             {
+                client.LogErrorAsync(e.StackTrace);
                 response = new ResponseJson { Code = -10, Message = "An error has ocurred, please try it later" };
+            }
+            finally
+            {
+                client.LogsAsync("GetGameMoves", "{'idGame':'" + idGame + "'}", ParseObjectToJson(response));
             }
             return ToEnumerable<ResponseJson>(response);
         }
@@ -43,8 +48,8 @@ namespace ProyectPRS.Controllers
             ResponseJson response = null;
             InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
             try
-            {                                
-                var task = client.GetGameDetailScoreAsync(idPlayer);                
+            {
+                var task = client.GetGameDetailScoreAsync(idPlayer);
                 task.Wait();
                 if (task.IsCompletedSuccessfully)
                     response = task.Result;
@@ -52,8 +57,13 @@ namespace ProyectPRS.Controllers
                     response = new ResponseJson { Code = -1, Message = "Cannot get game´s detail" };
             }
             catch (Exception e)
-            {                
+            {
+                client.LogErrorAsync(e.StackTrace);
                 response = new ResponseJson { Code = -10, Message = "An error has ocurred, please try it later" };
+            }
+            finally
+            {
+                client.LogsAsync("GetDetailsScore", "{'idPlayer':'" + idPlayer + "'}", ParseObjectToJson(response));
             }
             return ToEnumerable<ResponseJson>(response);
         }
@@ -63,9 +73,9 @@ namespace ProyectPRS.Controllers
         public IEnumerable<ResponseJson> CheckRound(int idGame, int idRound)
         {
             ResponseJson response = null;
+            InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
             try
             {
-                InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
                 var task = client.CheckRoundMovesAsync(idGame, idRound);
                 task.Wait();
                 if (task.IsCompletedSuccessfully)
@@ -75,7 +85,12 @@ namespace ProyectPRS.Controllers
             }
             catch (Exception e)
             {
+                client.LogErrorAsync(e.StackTrace);
                 response = new ResponseJson { Code = -10, Message = "An error has ocurred, please try it later" };
+            }
+            finally
+            {
+                client.LogsAsync("CheckRound", "{'idGame':'" + idGame + "','idRound':'" + idRound + "'}", ParseObjectToJson(response));
             }
             return ToEnumerable<ResponseJson>(response);
         }
@@ -88,12 +103,13 @@ namespace ProyectPRS.Controllers
             GameControllerModel responsePlayerOne = null;
             GameControllerModel responsePlayerTwo = null;
             GameControllerResponse response = null;
+            InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
             try
             {
-                responsePlayerOne = InsertPlayer(playerOne);
+                responsePlayerOne = InsertPlayer(playerOne, client);
                 if (responsePlayerOne.Code == 0)
                 {
-                    responsePlayerTwo = InsertPlayer(playerTwo, responsePlayerOne.IdGame);
+                    responsePlayerTwo = InsertPlayer(playerTwo, client, responsePlayerOne.IdGame);
                     responseJson = new ResponseJson { Code = responsePlayerTwo.Code, Message = responsePlayerTwo.Message };
                 }
                 response = new GameControllerResponse { IdGame = responsePlayerOne.IdGame, PlayerOne = responsePlayerOne.IdPlayer, PlayerTwo = responsePlayerTwo.IdPlayer, IdRound = responsePlayerOne.IdRound };
@@ -101,17 +117,21 @@ namespace ProyectPRS.Controllers
             }
             catch (Exception e)
             {
+                client.LogErrorAsync(e.StackTrace);
                 responseJson = new ResponseJson { Code = -10, Message = "An error has ocurred, please try it later" };
+            }
+            finally
+            {
+                client.LogsAsync("StartGame", "{'playerOne':'" + playerOne + "','playerTwo':'" + playerTwo + "'}", ParseObjectToJson(response));
             }
             return ToEnumerable<ResponseJson>(responseJson);
         }
 
-        private GameControllerModel InsertPlayer(string player, int idGame = 0)
+        private GameControllerModel InsertPlayer(string player, InitializeClient client, int idGame = 0)
         {
             GameControllerModel response = null;
             try
             {
-                InitializeClient client = new InitializeClient(new InitializeClient.EndpointConfiguration());
                 var task = client.NewPlayerAsync(player, idGame);
                 task.Wait();
                 if (task.IsCompletedSuccessfully)
@@ -124,6 +144,7 @@ namespace ProyectPRS.Controllers
             }
             catch (Exception e)
             {
+                client.LogErrorAsync(e.StackTrace);
                 response = new GameControllerModel { Code = -10, Message = "An error has ocurred, please try it later" };
             }
             return response;

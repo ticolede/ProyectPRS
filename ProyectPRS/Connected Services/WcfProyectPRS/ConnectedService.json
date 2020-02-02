@@ -5,7 +5,7 @@
     "Uri": "https://go.microsoft.com/fwlink/?linkid=858517"
   },
   "ExtendedData": {
-    "Uri": "http://localhost/WcfProyectoPRS/Initialize.svc?wsdl",
+    "Uri": "http://localhost/WcfProyectPRS/Initialize.svc?wsdl",
     "Namespace": "WcfProyectPRS",
     "SelectedAccessLevelForGeneratedClass": "Public",
     "GenerateMessageContract": false,
