@@ -12,3 +12,4 @@ C:\Users\Fabian\Documents\GitHub\ProyectPRS\TestProyect\obj\Debug\netcoreapp2.1\
 C:\Users\Fabian\Documents\GitHub\ProyectPRS\TestProyect\obj\Debug\netcoreapp2.1\TestProyect.AssemblyInfo.cs
 C:\Users\Fabian\Documents\GitHub\ProyectPRS\TestProyect\obj\Debug\netcoreapp2.1\TestProyect.dll
 C:\Users\Fabian\Documents\GitHub\ProyectPRS\TestProyect\obj\Debug\netcoreapp2.1\TestProyect.pdb
+C:\Users\Fabian\Documents\GitHub\ProyectPRS\TestProyect\obj\Debug\netcoreapp2.1\TestProyect.csprojAssemblyReference.cache

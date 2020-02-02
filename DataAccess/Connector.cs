@@ -10,12 +10,8 @@ using System.Threading.Tasks;
 namespace DataAccess
 {
     public class Connector
-    {
-        static string ConnectionString = @"Data Source = DESKTOP-46VV2T7\SQLEXPRESS;" +
-                                                        "Initial Catalog=ProyectPRS;" +
-                                                        "User id=prs;" +
-                                                        "Password=jenova17;";
-        /*AZURE: Server=tcp:jenovadb.database.windows.net,1433;Initial Catalog=ProyectPRS;Persist Security Info=False;User ID=admindb;Password=Jenova17;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;*/
+    {       
+        static string ConnectionString = @"Server=tcp:jenovadb.database.windows.net,1433;Initial Catalog=ProyectPRS;Persist Security Info=False;User ID=admindb;Password=Jenova17;";
 
 
         public static dynamic ExecuteQuery<T>(string sql, Dictionary<string, dynamic> parameters, bool isStoreProc)

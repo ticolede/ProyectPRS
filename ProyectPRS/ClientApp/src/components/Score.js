@@ -22,8 +22,7 @@ export class Score extends Component {
                     <tr>
                         <th>Player</th>
                         <th>Won</th>
-                        <th>Lost</th>
-                        <th>#</th>
+                        <th>Lost</th>                        
                     </tr>
                 </thead>
                 <tbody>
